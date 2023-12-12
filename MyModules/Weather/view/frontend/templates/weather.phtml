@@ -35,7 +35,7 @@
     // });
 
     require(['jquery'], function ($) {
-        ($.get('http://api.weatherapi.com/v1/current.json?key=a6b116b001f84614bf991059231212&q=Hanoi', function(data) => {
+        ($.get('http://api.weatherapi.com/v1/current.json?key=a6b116b001f84614bf991059231212&q=Hanoi', function(data) {
             $('.image').html('<img src="' + data.current.condition.icon + '"/>');
             $('.temperature').html(data.current.temp_c + '<sup>o</sup>C');
         }))();
