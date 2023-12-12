@@ -2,10 +2,10 @@
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
         <title>Dự báo thời tiết</title>
-        <css src="MyModules_Weather::css/style.css"/>
+        <css src="MyModules_Weather::/web/css/style.css"/>
     </head>
 
     <referenceBlock name="content">
-        <block class="MyModules\Weather\Block\Index" name="weather_index_index" template="weather.phtml" />
+        <block class="MyModules\Weather\Block\Weather" name="weather_index_index" template="weather.phtml" />
     </referenceBlock>
 </page>
