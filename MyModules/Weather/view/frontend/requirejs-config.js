@@ -1,6 +1,6 @@
 var config = {
     paths: {
-        "simple_weather": "Robin_Bai1/js/jquery.simpleWeather.min"
+        "simple_weather": "MyModules_Weather/js/jquery.simpleWeather.min"
     },
     shim: {
         "simple_weather": ["jquery"]
