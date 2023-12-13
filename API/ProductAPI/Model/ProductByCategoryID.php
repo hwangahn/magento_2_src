@@ -1,30 +1,26 @@
 <?php
-namespace API\GetProductByID\Model;
-use API\GetProductByID\Api\ProductByIdInterface;
+namespace API\ProductAPI\Model;
+use API\ProductAPI\Api\ProductByCategoryIDInterface;
 use Magento\Framework\View\Element\Template;
 
 
-class ProductById extends Template implements ProductByIdInterface
+class ProductByCategoryID extends Template implements ProductByCategoryIDInterface
 {
     protected $_productCollectionFactory;
-
-    public function __construct(
-
-        \Magento\Backend\Block\Template\Context $context,
-        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
-        array $data = []
+  
+    public function __construct(       
+        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory
     )
-
-    {
+    {    
         $this->_productCollectionFactory = $productCollectionFactory;
-        parent::__construct($context, $data);
     }
-
-    public function getProductCollection()
+    
+    
+    public function getProductCollectionByCategories($ids)
     {
         $collection = $this->_productCollectionFactory->create();
         $collection->addAttributeToSelect('*');
-        //$collection->setPageSize(3); // fetching only 3 products
+        $collection->addCategoriesFilter(['in' => $ids]);
         return $collection;
     }
     /**
@@ -34,12 +30,11 @@ class ProductById extends Template implements ProductByIdInterface
      * @param string $name Users name.
      * @return string Greeting message with users name.
      */
-    public function getProductById($id) {
-        $productCollection = $this->getProductCollection();
+    public function getProductByCategoryID($cid) {
+        $productCollection = $this->getProductCollectionByCategories($cid);
         $data = [];
-        foreach ($productCollection as $product) {
-            if($product['entity_id'] == $id){
-                $data[$product->getAttributeCode()] = [
+        foreach ($productCollection as $k => $product) {
+        	$data[$k + 1] = [
                         'ID' => $product['entity_id'],
                         'SKU' => $product['sku'],
                         'NAME' => $product['name'],
@@ -52,7 +47,7 @@ class ProductById extends Template implements ProductByIdInterface
                         'IMAGE' => $product['image'],
                         'STATUS_ID' => $product['status'],
                 ];
-              }
+              
           }
           return $data;
         }
