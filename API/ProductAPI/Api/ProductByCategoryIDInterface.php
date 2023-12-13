@@ -9,7 +9,7 @@
   {
     /**
      * @api
-     * @param string $id Product id.
+     * @param string $cid Product id.
      * @return string product data
      */
     public function getProductByCategoryID($cid);

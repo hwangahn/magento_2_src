@@ -9,7 +9,7 @@
   {
     /**
      * @api
-     * @param string $id Product id.
+     * @param string $sku Product id.
      * @return string product data
      */
     public function getProductBySKU($sku);

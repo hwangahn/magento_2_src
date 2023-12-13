@@ -89,7 +89,7 @@ class ProductRepositoryModel implements ProductRepositoryInterface
      */
     public function getList($type, ProductSearchCriteriaInterface $searchCriteria = null)
     {
-        $allowed = [static::FILTER_TYPE_TOP_SELLING, static::FILTER_TYPE_TOP_FREE, static::FILTER_TYPE_TOP_RATED];
+        $allowed = [static::FILTER_TYPE_TOP_SELLING, static::FILTER_TYPE_TOP_RATED];
         $type    = mb_strtolower($type);
 
         if (empty($searchCriteria)) {
@@ -99,10 +99,6 @@ class ProductRepositoryModel implements ProductRepositoryInterface
         switch ($type) {
             case static::FILTER_TYPE_TOP_SELLING:
                 $result = $this->getBestsellers('gt', $searchCriteria);
-                break;
-
-            case static::FILTER_TYPE_TOP_FREE:
-                $result = $this->getBestsellers('eq', $searchCriteria);
                 break;
 
             case static::FILTER_TYPE_TOP_RATED:
